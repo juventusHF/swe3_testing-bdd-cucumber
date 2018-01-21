@@ -7,10 +7,8 @@ import org.springframework.hateoas.ResourceSupport;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@XmlRootElement
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // to resolve a lazy loading issue during JSON serialization
 public class Employee extends ResourceSupport {
 

@@ -11,7 +11,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.*;
 
 @Entity
-@XmlRootElement
 public class Department extends ResourceSupport {
 
     @Id

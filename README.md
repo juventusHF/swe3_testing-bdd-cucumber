@@ -1,5 +1,13 @@
 # RESTful Services mit Spring Boot 
 
+Starte die Applikation:
+
+    mvn spring-boot:run
+    
+Du kannst nun die Applikation unter folgenden URLs aufrufen: 
+- http://localhost:8080/employees
+- http://localhost:8080/departments
+
 ## cURL
 
 Um mit dieser Übung arbeiten zu können, solltest Du cURL installieren. 
@@ -30,34 +38,41 @@ Füge dazu im POM folgende Dependencies hinzu:
     
 Setze das Property `springfox.swagger.version` auf `2.7.0`.
 
-Füge folgende Klasse hinzu:
+Füge in der Klasse `ch.juventus.example.ExampleApplication` folgende Annotation auf Klassenebene hinzu `@EnableSwagger2`
 
+Nun kannst Du Swagger UI unter folgender URL aufrufen: http://localhost:8080/swagger-ui.html
+Versuche, über die Weboberfläche einige Requests an die Applikation zu senden.
 
-- 1 configuration klasse
-- URL aufrufen http://localhost:8080/swagger-ui.html
+### Content negotiation
 
+Rufe die gleiche Ressource in verschiedenen Formaten auf:
 
-- content negotiation / representation (HTML vs JSON)? http://www.baeldung.com/spring-mvc-content-negotiation-json-xml mal mit curl beides abfragen und sehen wie json und xml kommt
-  - mit curl nach xml fragen und dabei scheitern (406)
-  - read https://docs.spring.io/spring-boot/docs/current/reference/html/howto-spring-mvc.html#howto-write-an-xml-rest-service
-  - add 2 dependencies 1 one annotation
-  - `curl -v -H "Accept: application/xml" http://localhost:8080/departments`
+- JSON: `curl -v http://localhost:8080/departments`
+- XML: `curl -v -H "Accept: application/xml" http://localhost:8080/departments`
 
-- validierung
-  - enablen
-  - mal mit curl nen kaputten employee schicken.
+Was bedeutet der HTTP Statuscode 406?
 
-- hateoas einbauen
-  - initial: employees haben auf department @JsonIgnore gesetzt
-  - alle dinger mit selfrel
-  - mal die employees ins department mal linken
-  - support für embedded scheint nicht so gut - man sieht nur beispiele, wo sich die leute das selbst bauen.
-  - https://docs.spring.io/spring-hateoas/docs/current/reference/html/
-  - http://www.baeldung.com/spring-hateoas-tutorial
+Füge Support für XML mit Hilfe folgenden Abschnitts hinzu: 
+https://docs.spring.io/spring-boot/docs/current/reference/html/howto-spring-mvc.html#howto-write-an-xml-rest-service
+
+### HATEOAS Support
+
+Der `DepartmentController` dekoriert die Ressource `Department` mit Links. 
+Erweitere den `EmployeeController`, sodass die Ressource `Employee` mit folgenden Links dekoriert wird:
+- `_self`-Link mit Link auf die eigene URL.
+- 'department`- Links, der die URL des verlinkten Departments enthält.
+
+### POST-Request
+
+Erzeuge einen neuen Employee mit folgendem POST-Request:
+
+    curl -v -H "Content-Type: application/json" POST -d '{"firstName":"Heidi","lastName":"Keppert","_links":{"department":{"href":"http://localhost:8080/departments/1"}}}' http://localhost:8080/employees
+
+Verifiziere, dass d
 
 - employee posten / putten mit link
 
-  curl -H "Content-Type: application/json" -X POST -d '{"firstName":"Tim","lastName":"Taylor","_links":{"department":{"href":"http://localhost:8080/departments/1"}}}' http://localhost:8080/employees
+  
   - die beziehung von employee zu department ist nicht persistiert. Diskutiere folgende Ansätze
     - das links-element in der create-methode auswerten.
     - ein neues attribut einführen - department-ID
