@@ -43,7 +43,7 @@ public class EmployeeController {
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
-                .buildAndExpand(persistedEmployee.getId()).toUri();
+                .buildAndExpand(persistedEmployee.getStid()).toUri();
 
         return ResponseEntity.created(location).build();
     }
