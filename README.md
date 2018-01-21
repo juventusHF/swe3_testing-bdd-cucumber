@@ -43,6 +43,10 @@ Füge auf der Klasse `ch.juventus.example.ExampleApplication` die Annotation `@E
 Nun kannst Du Swagger UI unter folgender URL aufrufen: http://localhost:8080/swagger-ui.html.
 Versuche, über die Weboberfläche einige Requests an die Applikation zu senden.
 
+Die generierte API-Spezifikation lässt sich über eine weitere URL aufrufen:
+
+    curl -v http://localhost:8080/v2/api-docs
+
 ### Content negotiation
 
 Rufe die gleiche Ressource in verschiedenen Formaten auf:
