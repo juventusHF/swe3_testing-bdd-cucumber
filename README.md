@@ -1,13 +1,41 @@
+# RESTful Services mit Spring Boot 
 
-## curl installieren
-Installier curl: 
-macOS: brew install curl
-Windows: https://stackoverflow.com/a/16216825/5155817
-Mit curl -v ... werden die Details der Kommunikation via HTTP angezeigt.
+## cURL
 
-## tasks
+Um mit dieser Übung arbeiten zu können, solltest Du cURL installieren. 
 
-- HTTP Verbs
+- macOS: `brew install curl`
+- Windows: https://stackoverflow.com/a/16216825/5155817
+
+Hinweis: Mit `curl -v ... werden die Details der Kommunikation via HTTP angezeigt.
+
+## Aufgaben
+
+### API Dokumentation mit Swagger
+
+Erweitere das Projekt, sodass die API-Dokumentation mit Swagger UI angezeigt wird.
+
+Füge dazu im POM folgende Dependencies hinzu: 
+
+    <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger2</artifactId>
+        <version>${springfox.swagger.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
+        <version>${springfox.swagger.version}</version>
+    </dependency>
+    
+Setze das Property `springfox.swagger.version` auf `2.7.0`.
+
+Füge folgende Klasse hinzu:
+
+
+- 1 configuration klasse
+- URL aufrufen http://localhost:8080/swagger-ui.html
+
 
 - content negotiation / representation (HTML vs JSON)? http://www.baeldung.com/spring-mvc-content-negotiation-json-xml mal mit curl beides abfragen und sehen wie json und xml kommt
   - mit curl nach xml fragen und dabei scheitern (406)
@@ -36,12 +64,7 @@ Mit curl -v ... werden die Details der Kommunikation via HTTP angezeigt.
     - URLs umstrukturieren - /departments/{id}/employees/{id} 
     - weitere ideen?
 
-### swagger stuff
 
-- https://indrabasak.wordpress.com/2016/04/07/swagger-2-integration-with-spring-rest/
-- 2 dependencies hinzufügen
-- 1 configuration klasse
-- URL aufrufen http://localhost:8080/swagger-ui.html
 
 ### exception handling
 
