@@ -68,27 +68,31 @@ Erzeuge einen neuen Employee mit folgendem POST-Request:
 
     curl -v -H "Content-Type: application/json" POST -d '{"firstName":"Heidi","lastName":"Keppert","_links":{"department":{"href":"http://localhost:8080/departments/1"}}}' http://localhost:8080/employees
 
-Verifiziere, dass d
+in der ausgegebenen Response, überprüfe folgende Eigenschaften:
+- HTTP-Statuscode
+- Location-Header
 
-- employee posten / putten mit link
+Überprüfe den neu angelegten Employee, indem Du seine URL aufrufst, z.B. 
 
-  
-  - die beziehung von employee zu department ist nicht persistiert. Diskutiere folgende Ansätze
-    - das links-element in der create-methode auswerten.
-    - ein neues attribut einführen - department-ID
-    - URLs umstrukturieren - /departments/{id}/employees/{id} 
-    - weitere ideen?
+    curl -v http://localhost:8080/employees/5
+
+Dabei fällt dabei auf, dass die Beziehung von Employee zu Department nicht persistiert wurde. 
+
+Diskutiere folgende Ansätze, das Problem zu lösen:
+- Das `links`-Element in der `create`-Methode auswerten.
+- Ein neues attribut einführen, z.B `departmentId`.
+- Die URLs umstrukturieren: `/departments/{id}/employees/{id}` 
+- Hast Du weitere Ideen?
 
 
+### Exception-Handling
 
-### exception handling
+Was passiert, wenn einer unbekannter Employee aufgerufen wird?
 
+    curl -v http://localhost:8080/employees/8
+
+Warum ist das keine "angemessene" Antwort vom Server?
+
+Füge mit Hilfe folgendem Abschnitts einen globalen Exceptionhandler hinzu, 
+welcher die zuvor aufgetretene Exception auf einen passenden HTTP-Statuscode mappt:
 - https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-exceptionhandler
-- http://localhost:8080/employees/8 -> exception zeigt 500 und zu viele interne daten an
-- erfinde exception handler, der entity not found exceptions in 404s mappt
-
-## open issues
-
-- funny root element name: curl -v -H "Accept: application/xml"  http://localhost:8080/employees/1
-  - in XML: employee item in department employees collection is called employees but should be employee
-- needed to annotate Employee with @JsonIgnoreProperties - can we get rid of this?
