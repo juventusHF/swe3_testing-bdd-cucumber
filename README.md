@@ -23,7 +23,7 @@ Hinweis: Mit `curl -v ...` werden die Details der Kommunikation via HTTP angezei
 
 Erweitere das Projekt, sodass die API-Dokumentation mit Swagger UI angezeigt wird.
 
-Füge dazu im POM folgende Dependencies hinzu: 
+Füge dazu im POM folgende Abhängigkeiten hinzu: 
 
     <dependency>
         <groupId>io.springfox</groupId>
@@ -38,9 +38,9 @@ Füge dazu im POM folgende Dependencies hinzu:
     
 Setze das Property `springfox.swagger.version` auf `2.7.0`.
 
-Füge in der Klasse `ch.juventus.example.ExampleApplication` folgende Annotation auf Klassenebene hinzu `@EnableSwagger2`
+Füge auf der Klasse `ch.juventus.example.ExampleApplication` die Annotation `@EnableSwagger2` hinzu.
 
-Nun kannst Du Swagger UI unter folgender URL aufrufen: http://localhost:8080/swagger-ui.html
+Nun kannst Du Swagger UI unter folgender URL aufrufen: http://localhost:8080/swagger-ui.html.
 Versuche, über die Weboberfläche einige Requests an die Applikation zu senden.
 
 ### Content negotiation
@@ -60,15 +60,17 @@ https://docs.spring.io/spring-boot/docs/current/reference/html/howto-spring-mvc.
 Der `DepartmentController` dekoriert die Ressource `Department` mit Links. 
 Erweitere den `EmployeeController`, sodass die Ressource `Employee` mit folgenden Links dekoriert wird:
 - `_self`-Link mit Link auf die eigene URL.
-- 'department`- Links, der die URL des verlinkten Departments enthält.
+- `department`- Links, der die URL des verlinkten Departments enthält.
 
 ### POST-Request
 
 Erzeuge einen neuen Employee mit folgendem POST-Request:
 
-    curl -v -H "Content-Type: application/json" POST -d '{"firstName":"Heidi","lastName":"Keppert","_links":{"department":{"href":"http://localhost:8080/departments/1"}}}' http://localhost:8080/employees
+    curl -v -H "Content-Type: application/json" POST -d \
+    '{"firstName":"Heidi","lastName":"Keppert","_links":{"department":{"href":"http://localhost:8080/departments/1"}}}' \
+    http://localhost:8080/employees
 
-in der ausgegebenen Response, überprüfe folgende Eigenschaften:
+In der ausgegebenen Response, überprüfe folgende Eigenschaften:
 - HTTP-Statuscode
 - Location-Header
 
@@ -80,14 +82,14 @@ Dabei fällt dabei auf, dass die Beziehung von Employee zu Department nicht pers
 
 Diskutiere folgende Ansätze, das Problem zu lösen:
 - Das `links`-Element in der `create`-Methode auswerten.
-- Ein neues attribut einführen, z.B `departmentId`.
+- Im Employee ein neues Attribut einführen, z.B `departmentId`.
 - Die URLs umstrukturieren: `/departments/{id}/employees/{id}` 
 - Hast Du weitere Ideen?
 
 
 ### Exception-Handling
 
-Was passiert, wenn einer unbekannter Employee aufgerufen wird?
+Was passiert, wenn ein unbekannter Employee aufgerufen wird?
 
     curl -v http://localhost:8080/employees/8
 
@@ -95,4 +97,4 @@ Warum ist das keine "angemessene" Antwort vom Server?
 
 Füge mit Hilfe folgendem Abschnitts einen globalen Exceptionhandler hinzu, 
 welcher die zuvor aufgetretene Exception auf einen passenden HTTP-Statuscode mappt:
-- https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-exceptionhandler
+ https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-exceptionhandler
