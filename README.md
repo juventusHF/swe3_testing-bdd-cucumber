@@ -40,7 +40,7 @@ Setze das Property `springfox.swagger.version` auf `2.7.0`.
 
 Füge auf der Klasse `ch.juventus.example.ExampleApplication` die Annotation `@EnableSwagger2` hinzu.
 
-Nun kannst Du Swagger UI unter folgender URL aufrufen: http://localhost:8080/swagger-ui.html.
+NAch einem Neustart der Applikation kannst Du Swagger UI unter folgender URL aufrufen: http://localhost:8080/swagger-ui.html.
 Versuche, über die Weboberfläche einige Requests an die Applikation zu senden.
 
 Die generierte API-Spezifikation lässt sich über eine weitere URL aufrufen:
@@ -64,7 +64,7 @@ https://docs.spring.io/spring-boot/docs/current/reference/html/howto-spring-mvc.
 Der `DepartmentController` dekoriert die Ressource `Department` mit Links. 
 Erweitere den `EmployeeController`, sodass die Ressource `Employee` mit folgenden Links dekoriert wird:
 - `_self`-Link mit Link auf die eigene URL.
-- `department`- Links, der die URL des verlinkten Departments enthält.
+- `department`- Link, der die URL des verlinkten Departments enthält.
 
 ### POST-Request
 
@@ -99,6 +99,6 @@ Was passiert, wenn ein unbekannter Employee aufgerufen wird?
 
 Warum ist das keine "angemessene" Antwort vom Server?
 
-Füge mit Hilfe folgendem Abschnitts einen globalen Exceptionhandler hinzu, 
-welcher die zuvor aufgetretene Exception auf einen passenden HTTP-Statuscode mappt:
+Füge mit Hilfe folgenden Abschnitts einen globalen Exceptionhandler hinzu, 
+welcher die Exception `javax.persistence.EntityNotFoundException` auf einen passenden HTTP-Statuscode mappt:
  https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-exceptionhandler
