@@ -70,7 +70,7 @@ Erweitere den `EmployeeController`, sodass die Ressource `Employee` mit folgende
 
 Erzeuge einen neuen Employee mit folgendem POST-Request:
 
-    curl -v -H "Content-Type: application/json" POST -d \
+    curl -v -H "Content-Type: application/json" -d \
     '{"firstName":"Heidi","lastName":"Keppert","_links":{"department":{"href":"http://localhost:8080/departments/1"}}}' \
     http://localhost:8080/employees
 
