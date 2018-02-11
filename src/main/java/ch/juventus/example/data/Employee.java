@@ -40,7 +40,7 @@ public class Employee extends ResourceSupport {
     }
 
     public void setStid(Long stid) {
-        stid = stid;
+        this.stid = stid;
     }
 
     public void setFirstName(String firstName) {
