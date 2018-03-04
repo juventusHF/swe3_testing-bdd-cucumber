@@ -30,10 +30,16 @@ Das Ergebnis sollte folgende Ausgabe sein:
 
 Erweitere das Test-Feature um ein neues Scenario.
 
-> Aufruf eines nicht-existierenden Employees soll mit der richtigen HTTP-Response beantwortet werden.
+> Aufruf eines nicht-existierenden Employees soll mit der passenden HTTP-Response beantwortet werden.
 
 Du müsstest folgende Dateien erweitern:
 
 - die Test-Scenarios in `ch/juventus/example/web/employee.feature`
 - die Test-Steps in `ch.juventus.example.web.EmployeeStepDefs`
+
+Hilfestellungen:
+- Welches Scenario existiert schon in `employee.feature`?
+- Wie sind die benutzten Given - When - Then Schritte `EmployeeStepDefs` abgebildet?
+- Wie würde eine neues Scenario aussehen, welches nach einem nicht existierenden Employee fragt (z.B. mit `5` als ID)?
+- Was fehlt in `EmployeeStepDefs`, um das neue Scenario zu implementieren?
 
