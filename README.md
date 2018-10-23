@@ -1,4 +1,4 @@
-# RESTful Services mit Spring Boot
+# BDD mit Cucumber
 
 Starte die Applikation:
 
