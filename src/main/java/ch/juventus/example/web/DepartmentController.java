@@ -31,7 +31,7 @@ public class DepartmentController {
 
     @GetMapping("/departments/{id}")
     public Department get(@PathVariable Long id) {
-        return addHateoasLinks(departmentRepository.findOne(id));
+        return addHateoasLinks(departmentRepository.findById(id).get());
     }
 
     public Department addHateoasLinks(Department department) {
