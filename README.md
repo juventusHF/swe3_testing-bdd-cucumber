@@ -40,6 +40,6 @@ Du müsstest folgende Dateien erweitern:
 Hilfestellungen:
 - Welches Scenario existiert schon in `employee.feature`?
 - Wie sind die benutzten Given - When - Then Schritte `EmployeeStepDefs` abgebildet?
-- Wie würde eine neues Scenario aussehen, welches nach einem nicht existierenden Employee fragt (z.B. mit `5` als ID)?
+- Wie würde eine neues Scenario aussehen, welches nach einem nicht existierenden Employee fragt (z.B. mit `99` als ID)?
 - Was fehlt in `EmployeeStepDefs`, um das neue Scenario zu implementieren?
 
